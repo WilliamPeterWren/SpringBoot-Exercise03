@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tranxuanphong.exercise03.entity.Role;
 import com.tranxuanphong.exercise03.entity.StaffAccount;
+import com.tranxuanphong.exercise03.repository.RoleRepository;
 import com.tranxuanphong.exercise03.service.StaffAccountService;
 
 import lombok.AllArgsConstructor;
@@ -23,14 +25,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/staffAccounts")
+@RequestMapping("api/staffaccounts")
 public class StaffAccountController {
     @Autowired
     private StaffAccountService staffAccountService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @PostMapping
     public ResponseEntity<StaffAccount> createStaffAccount(@RequestBody StaffAccount staffAccount) {
         StaffAccount savedStaffAccount = staffAccountService.createStaffAccount(staffAccount);
+
+        System.out.println("-------------------------------------------------------------------------");
+        System.out.println(savedStaffAccount.getCreatedBy());
+        System.out.println("-------------------------------------------------------------------------");
+
         return new ResponseEntity<>(savedStaffAccount, HttpStatus.CREATED);
     }
 

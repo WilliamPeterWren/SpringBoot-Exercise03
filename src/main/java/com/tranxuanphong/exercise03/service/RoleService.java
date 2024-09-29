@@ -6,7 +6,7 @@ import java.util.UUID;
 import com.tranxuanphong.exercise03.entity.Role;
 
 public interface RoleService {
-    // List<Role> findRolesByRolesId(UUID roleId);
+    List<Role> findRolesByRolesId(UUID roleId);
 
     public Role createRole(Role role);
 

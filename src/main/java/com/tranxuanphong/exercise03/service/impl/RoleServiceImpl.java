@@ -3,6 +3,7 @@ package com.tranxuanphong.exercise03.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tranxuanphong.exercise03.entity.Role;
@@ -17,12 +18,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
+    @Autowired
     private RoleRepository roleRepository;
 
-    // @Override
-    // public List<Role> findRolesByRolesId(UUID roleId) {
-    // return roleRepository.findRolesByRoleId(roleId);
-    // }
+    @Override
+    public List<Role> findRolesByRolesId(UUID roleId) {
+        return roleRepository.findRolesByRoleId(roleId);
+    }
 
     @Override
     public Role createRole(Role role) {

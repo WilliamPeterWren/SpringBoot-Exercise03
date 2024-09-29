@@ -1,0 +1,20 @@
+ROLE
+{
+    "roleName": "Store Administrator",
+    "privileges" : "super_admin_privilege, admin_read_privilege, admin_create_privilege, admin_update_privilege, admin_delete_privilege, staff_read_privilege, staff_create_privilege, staff_update_privilege, staff_delete_privilege"
+}
+
+{
+    "roleName": "Sales Manager",
+    "privileges" : "admin_read_privilege, admin_create_privilege, admin_update_privilege, admin_delete_privilege, staff_read_privilege, staff_create_privilege, staff_update_privilege, staff_delete_privilege"
+}
+
+{
+    "roleName": "Sales Staff",
+    "privileges" : "staff_read_privilege, staff_create_privilege, staff_update_privilege, staff_delete_privilege"
+}
+
+{
+    "roleName": "Guest",
+    "privileges" : "staff_read_privilege"
+}

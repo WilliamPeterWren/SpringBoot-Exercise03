@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tranxuanphong.exercise03.repository.RoleRepository;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -39,7 +41,7 @@ public class StaffAccount {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private Role role;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(100)")
@@ -87,18 +89,23 @@ public class StaffAccount {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by", referencedColumnName = "id", insertable = false, updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "created_by", referencedColumnName = "id")
+    @JsonBackReference
     private StaffAccount createdBy;
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<StaffAccount> subCreatedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "updated_by", referencedColumnName = "id", insertable = false, updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "updated_by", referencedColumnName = "id")
+    @JsonBackReference
     private StaffAccount updatedBy;
 
     @OneToMany(mappedBy = "updatedBy", cascade = CascadeType.ALL)
     private List<StaffAccount> subUpdatedBy;
+
+    public void setRoleById(UUID roleId, RoleRepository roleRepository) {
+        this.role = roleRepository.findById(roleId).orElse(null);
+    }
+
 }

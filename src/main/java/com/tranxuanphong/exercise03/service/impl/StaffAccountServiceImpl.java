@@ -3,6 +3,7 @@ package com.tranxuanphong.exercise03.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class StaffAccountServiceImpl implements StaffAccountService {
 
-    private final StaffAccountRepository staffAccountRepository;
+    private StaffAccountRepository staffAccountRepository;
 
     @Override
     public StaffAccount createStaffAccount(StaffAccount staffAccount) {
+
         return staffAccountRepository.save(staffAccount);
     }
 
